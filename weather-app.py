@@ -1,6 +1,7 @@
 import requests, json
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms.validators import DataRequired
+from datetime import datetime
 
 from config import api_key, SECRET_KEY
 from flask import Flask, render_template, redirect, url_for, request, flash
@@ -22,11 +23,13 @@ class WeatherForm(FlaskForm):
 @app.route('/<string:city>', methods=['GET', 'POST'])
 def index():
     form = WeatherForm()
+
     if form.validate_on_submit():
         city = form.city.data
         complete_url = base_url + "appid=" + api_key + "&q=" + city
         response = requests.get(complete_url)
         x = response.json()
+        print(x)
         if x["cod"] != "404":
             main = x["main"]
             current_temperature = f"{main['temp'] - 273.15:.1f}°C"
@@ -34,6 +37,9 @@ def index():
             country = x["sys"]["country"]
             name = x["name"]
             icon = weather[0]["icon"]
+            sunrise = datetime.utcfromtimestamp(x["sys"]["sunrise"]).strftime('%H:%M')
+            sunset = datetime.utcfromtimestamp(x["sys"]["sunset"]).strftime('%H:%M')
+            print(sunrise, sunset)
             weather_description = weather[0]["description"].title()
             return render_template('index.html', city=city, country=country, name=name, icon=icon,
                                    current_temperature=current_temperature, description=weather_description, form=form)
