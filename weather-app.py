@@ -29,7 +29,7 @@ def index():
         x = response.json()
         if x["cod"] != "404":
             main = x["main"]
-            current_temperature = f"{main['temp'] - 273.15}°C"
+            current_temperature = f"{main['temp'] - 273.15:.1f}°C"
             weather = x["weather"]
             country = x["sys"]["country"]
             name = x["name"]
