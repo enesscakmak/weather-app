@@ -39,10 +39,17 @@ def index():
             icon = weather[0]["icon"]
             sunrise = datetime.utcfromtimestamp(x["sys"]["sunrise"]).strftime('%H:%M')
             sunset = datetime.utcfromtimestamp(x["sys"]["sunset"]).strftime('%H:%M')
-            print(sunrise, sunset)
+            min_temp = f"{main['temp_min'] - 273.15:.1f}°C"
+            max_temp = f"{main['temp_max'] - 273.15:.1f}°C"
+            feels_like = f"{main['feels_like'] - 273.15:.1f}°C"
+            pressure = f"{main['pressure']} hPa"
+            humidity = f"{main['humidity']}%"
+            wind = f"{x['wind']['speed']} m/s"
             weather_description = weather[0]["description"].title()
             return render_template('index.html', city=city, country=country, name=name, icon=icon,
-                                   current_temperature=current_temperature, description=weather_description, form=form)
+                                   current_temperature=current_temperature, description=weather_description, form=form,
+                                   min_temp=min_temp, max_temp=max_temp, sunrise=sunrise, sunset=sunset,
+                                   feels_like=feels_like, pressure=pressure, humidity=humidity, wind=wind)
         else:
             flash("City Not Found")
             return redirect(url_for('index'))
