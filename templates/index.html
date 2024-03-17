@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gradient-to-b from-amber-300 via-orange-500 to-red-500 min-h-screen">
 
-    <div class="flex justify-center items-center pt-10">
+    <div class="flex justify-center items-center mt-3">
     <img src="./static/icons/unknown.png" alt="Weather image with question mark in the middle">
     </div>
 
@@ -17,22 +17,52 @@
         {{ form.csrf_token }}
 
         <div class="form-group">
-
+<div >
             {{ form.city(class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id="city", placeholder="City") }}
+     </div>
             <br>
             <div class="pt-3 flex justify-center">
                         {{ form.submit(class="shadow bg-purple-500 py-3 px-3 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold rounded", value="Get Weather")}}
             </div>
                 <br>
-            <label>City: {{ name }}   </label>
-            <label>Country: {{ country }}</label>
-            <br>
-            <label>Temperature : {{ current_temperature }}</label>
-            <br>
-            <label>Excepted: {{ description }}</label>
-            <img src="./static/icons/{{ icon }}.png" alt="Weather Icon">
         </div>
-</form>
+            </form>
 </div>
+        <div class="container opacity-40 mx-auto w-[96rem] h-64 mt-20 bg-[#21212120] rounded-lg">
+            <div class="relative">
+                <div class="list-none ">
+                    <ul>
+
+                        <li class="text-8xl absolute left-[40px] top-[10px]">{{ current_temperature }}</li>
+                        <li class="text-4xl absolute left-[60px] top-[110px]"> {{ name }}, {{ country }}</li>
+                        <li class="text-3xl absolute left-[60px] top-[158px]">Minimum {{ min_temp }}</li>
+                        <li class="text-3xl absolute left-[60px] top-[206px]">Maximum {{ max_temp }}</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li class="text-3xl absolute left-[500px] top-[34px]">Feels Like {{ feels_like }}</li>
+                        <li class="text-3xl absolute left-[500px] top-[84px]">{{ humidity }}</li>
+                        <li class="text-3xl absolute left-[500px] top-[134px]">{{ wind }}</li>
+                        <li class="text-3xl absolute left-[500px] top-[184px]">{{ pressure }}</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li class="text-3xl absolute left-[900px] top-[48px]">{{ description }}</li>
+                        <li class="text-3xl absolute left-[900px] top-[110px]">Sunrise {{ sunrise }}</li>
+                        <li class="text-3xl absolute left-[900px] top-[168px]">Sunset {{ sunset }}</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <img class="absolute left-[1300px] top-[60px]" src="./static/icons/{{ icon }}.png" alt="Weather Icon">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 </body>
 </html>
