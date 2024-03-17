@@ -29,17 +29,17 @@ def index():
         x = response.json()
         if x["cod"] != "404":
             main = x["main"]
-            current_temperature = f"{main['temp']} - 273.15°C"
+            current_temperature = f"{main['temp'] - 273.15}°C"
             weather = x["weather"]
-            country = x["country"]
+            country = x["sys"]["country"]
             name = x["name"]
             weather_description = weather[0]["description"]
             return render_template('index.html', city=city, country=country, name=name,
-                                   current_temperature=current_temperature, description=weather_description)
+                                   current_temperature=current_temperature, description=weather_description, form=form)
         else:
             flash("City Not Found")
             return redirect(url_for('index'))
-    return render_template('index.html')
+    return render_template('index.html', form=form)
 
 
 if __name__ == '__main__':
