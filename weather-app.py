@@ -33,8 +33,9 @@ def index():
             weather = x["weather"]
             country = x["sys"]["country"]
             name = x["name"]
-            weather_description = weather[0]["description"]
-            return render_template('index.html', city=city, country=country, name=name,
+            icon = weather[0]["icon"]
+            weather_description = weather[0]["description"].title()
+            return render_template('index.html', city=city, country=country, name=name, icon=icon,
                                    current_temperature=current_temperature, description=weather_description, form=form)
         else:
             flash("City Not Found")
