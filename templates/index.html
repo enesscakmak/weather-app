@@ -13,13 +13,13 @@
         <div class="form-group">
             {{ form.city(class="form-control", id="city", placeholder="City") }}
             <br>
-            <!--display informations with text-->
-            <label>City: {{ city }}   </label>
+            <label>City: {{ name }}   </label>
             <label>Country: {{ country }}</label>
             <br>
             <label>Temperature : {{ current_temperature }}</label>
             <br>
             <label>Excepted: {{ description }}</label>
+            <img src="./static/icons/{{ icon }}.png" alt="Weather Icon">
 
             </div>
 </form>
