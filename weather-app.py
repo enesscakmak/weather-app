@@ -1,14 +1,16 @@
 import requests, json
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, CSRFProtect
 from wtforms.validators import DataRequired
 
-from config import api_key
+from config import api_key, SECRET_KEY
 from flask import Flask, render_template, redirect, url_for, request, flash
 from wtforms import StringField, SubmitField
 
 base_url = "https://api.openweathermap.org/data/2.5/weather?"
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
+app.config['SECRET_KEY'] = SECRET_KEY
 
 
 class WeatherForm(FlaskForm):
@@ -27,16 +29,13 @@ def index():
         x = response.json()
         if x["cod"] != "404":
             main = x["main"]
-            current_temperature = main["temp"]
-            current_pressure = main["pressure"]
-            current_humidity = main["humidity"]
+            current_temperature = f"{main['temp']} - 273.15°C"
             weather = x["weather"]
             country = x["country"]
             name = x["name"]
             weather_description = weather[0]["description"]
-            return render_template('index.html', city=city, country=country, name=name, current_temperature=current_temperature,
-                                   current_pressure=current_pressure, current_humidity=current_humidity,
-                                   weather_description=weather_description)
+            return render_template('index.html', city=city, country=country, name=name,
+                                   current_temperature=current_temperature, description=weather_description)
         else:
             flash("City Not Found")
             return redirect(url_for('index'))
