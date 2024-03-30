@@ -5,7 +5,7 @@
     <title>Weather</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-b from-amber-300 via-orange-500 to-red-500 min-h-screen">
+<body class="min-h-screen bg-gradient-to-b from-amber-300 via-orange-500 to-red-500 ">
 
     <div class="flex justify-center items-center mt-3">
     <img src="./static/icons/unknown.png" alt="Weather image with question mark in the middle">
@@ -28,35 +28,35 @@
         </div>
             </form>
 </div>
-        <div class="container mx-auto w-[96rem] h-64 mt-20 bg-[#21212120] rounded-lg">
-            <div class="relative text-[#000000100]">
-                <div class="list-none ">
+        <div class="container mx-auto min-w-80 min-h-80 bg-[#21212120] rounded-lg ">
+            <div class="text-[#000000100] flex flex-wrap justify-between">
+                <div class="mr-0">
                     <ul>
-                        <li class="text-8xl absolute left-[60px] top-[10px]">{{ current_temperature }}</li>
-                        <li class="text-4xl absolute left-[60px] top-[110px]"> {{ name }}, {{ country }}</li>
-                        <li class="text-3xl absolute left-[60px] top-[158px]">Minimum {{ min_temp }}</li>
-                        <li class="text-3xl absolute left-[60px] top-[206px]">Maximum {{ max_temp }}</li>
+                        <li class="text-8xl ml-20 mt-6">{{ current_temperature }}</li>
+                        <li class="text-4xl ml-20 mt-6"> {{ name }}, {{ country }}</li>
+                        <li class="text-3xl ml-20 mt-6">Minimum {{ min_temp }}</li>
+                        <li class="text-3xl ml-20 mt-6 mb-6">Maximum {{ max_temp }}</li>
                     </ul>
                 </div>
-                <div>
+                <div class="mr-0">
                     <ul>
-                        <li class="text-3xl absolute left-[500px] top-[34px]">Feels Like {{ feels_like }}</li>
-                        <li class="text-3xl absolute left-[500px] top-[84px]">Humidity is at {{ humidity }}</li>
-                        <li class="text-3xl absolute left-[500px] top-[134px]">Wind speed is {{ wind }}</li>
-                        <li class="text-3xl absolute left-[500px] top-[184px]">Pressure is {{ pressure }}</li>
+                        <li class="text-3xl ml-16 mt-10">Feels Like {{ feels_like }}</li>
+                        <li class="text-3xl ml-16 mt-8">Humidity is at {{ humidity }}</li>
+                        <li class="text-3xl ml-16 mt-8">Wind speed is {{ wind }}</li>
+                        <li class="text-3xl ml-16 mt-8 mb-10">Pressure is {{ pressure }}</li>
                     </ul>
                 </div>
-                <div>
+                <div class="mr-0">
                     <ul>
-                        <li class="text-3xl absolute left-[900px] top-[48px]">Expecting {{ description }}</li>
-                        <li class="text-3xl absolute left-[900px] top-[110px]">Sunrise at {{ sunrise }}</li>
-                        <li class="text-3xl absolute left-[900px] top-[168px]">Sunset at {{ sunset }}</li>
+                        <li class="text-3xl ml-16 mt-12">Expecting {{ description }}</li>
+                        <li class="text-3xl ml-16 mt-12 mb-12">Sunrise at {{ sunrise }}</li>
+                        <li class="text-3xl ml-16 mb-12">Sunset at {{ sunset }}</li>
                     </ul>
                 </div>
                 <div>
                     <ul>
                         <li>
-                            <img class="absolute left-[1300px] top-[60px]" src="./static/icons/{{ icon }}.png" alt="Weather Icon">
+                            <img class="mr-16 my-20" src="./static/icons/{{ icon }}.png" alt="Weather Icon">
                         </li>
                     </ul>
                 </div>
