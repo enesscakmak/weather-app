@@ -29,7 +29,6 @@ def index():
         complete_url = base_url + "appid=" + api_key + "&q=" + city
         response = requests.get(complete_url)
         x = response.json()
-        print(x)
         if x["cod"] != "404":
             main = x["main"]
             current_temperature = f"{main['temp'] - 273.15:.1f}°C"
